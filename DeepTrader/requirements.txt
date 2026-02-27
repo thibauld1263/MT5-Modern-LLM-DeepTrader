@@ -1,0 +1,21 @@
+# DeepTrader - Requirements
+# Core
+torch>=2.1.0
+numpy>=1.24.0
+pandas>=2.0.0
+PyYAML>=6.0
+
+# Training & Logging
+tensorboard>=2.14.0
+tqdm>=4.65.0
+
+# Export & Inference
+onnx>=1.14.0
+onnxruntime>=1.16.0
+
+# Data source (optional, for live MT5 export)
+MetaTrader5>=5.0.45
+
+# Evaluation
+matplotlib>=3.7.0
+scikit-learn>=1.3.0
