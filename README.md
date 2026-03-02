@@ -32,17 +32,13 @@ pip install -r requirements.txt
 # Phase 1: Pre-train the Transformer to understand market structures
 python -m scripts.run_pretrain
 
-Phase 1 teaches the model the structure of the market, its goal is to predict the next candle.
 
 # Phase 2: Fine-tune the model to predict the ATR-based probabilities
 python -m scripts.run_finetune
 
-Phase 2 teaches the model to "trade." During fine-tuning, the model learns to predict the next 10 candles using SL and TP based on ATR. The model tries to reach as many TPs as possible.
 
 # Phase 3: Align the model with DPO
 python -m scripts.run_align
-
-Phase 3 teaches the model to learn from its mistakes on its own trades.
 
 # Export the trained model to ONNX format
 python -m scripts.run_export
