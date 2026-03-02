@@ -1,0 +1,44 @@
+# DeepTrader Training Configuration
+
+# Phase 1: Self-supervised pre-training (next-candle prediction)
+pretrain:
+  batch_size: 128
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  epochs: 100
+  warmup_epochs: 5
+  scheduler: "cosine"
+  grad_clip: 1.0
+  early_stopping_patience: 15
+  direction_loss_weight: 0.3    # Weight for direction BCE loss
+  regression_loss_weight: 1.0   # Weight for candle feature MSE loss
+
+# Phase 2: Contextual fine-tuning (multi-TF, trajectory generation)
+finetune:
+  batch_size: 128
+  learning_rate: 1.0e-5
+  weight_decay: 0.01
+  epochs: 30
+  warmup_epochs: 3
+  scheduler: "cosine"
+  grad_clip: 1.0
+  early_stopping_patience: 10
+  trajectory_loss_weight: 1.0
+  direction_loss_weight: 0.5
+
+# Phase 3: DPO outcome alignment
+align:
+  batch_size: 64
+  learning_rate: 5.0e-6
+  weight_decay: 0.01
+  epochs: 15
+  beta: 0.1                     # DPO temperature
+  warmup_epochs: 2
+  scheduler: "cosine"
+
+# General
+seed: 42
+num_workers: 0
+device: "auto"                   # auto-detect CUDA
+checkpoint_every: 5              # Save every N epochs
+log_every: 100                   # Log every N steps

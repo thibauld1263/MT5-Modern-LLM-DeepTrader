@@ -1,0 +1,44 @@
+# DeepTrader Data Configuration
+
+symbols:
+  # === Finetune symbols (9) ===
+  - AUDCAD
+  - BTCUSD
+  - DE40
+  - EURAUD
+  - EURGBP
+  - GBPCAD
+  - US30
+  - USTEC
+  - XAUUSD
+
+timeframes:
+  M30:
+    mt5_const: 16385       # PERIOD_M30
+    minutes: 30
+  H1:
+    mt5_const: 16386       # PERIOD_H1
+    minutes: 60
+  H4:
+    mt5_const: 16388       # PERIOD_H4
+    minutes: 240
+
+# Date range for data export (max history available)
+date_range:
+  start: "2000-01-01"
+  end: "2026-02-27"
+
+# Train/val/test split (chronological)
+split:
+  train_end: "2024-06-30"
+  val_end: "2025-06-30"
+  # Test = everything after val_end
+
+# Primary prediction timeframe
+primary_tf: "M30"
+
+# Paths
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  models_dir: "models"

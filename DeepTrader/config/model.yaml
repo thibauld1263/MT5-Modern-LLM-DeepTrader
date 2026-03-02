@@ -1,0 +1,26 @@
+# DeepTrader Model Configuration
+# Transformer Decoder (GPT-style, autoregressive)
+
+architecture:
+  d_model: 256           # Hidden dimension (13.7M params)
+  n_heads: 8             # Attention heads (32 dim per head)
+  n_layers: 8            # Transformer layers
+  d_ff: 1024             # Feed-forward inner dimension
+  dropout: 0.15          # Dropout rate
+  max_seq_len: 256       # Context window (candles)
+  n_features: 17         # Features per candle
+  activation: "gelu"     # Activation function
+
+# Pre-training generates 1 next candle
+pretrain:
+  predict_candles: 1
+
+# Fine-tuning generates K future candles
+finetune:
+  predict_candles: 10    # Trajectory length
+  freeze_layers: 2       # Freeze bottom N layers
+
+# Multi-TF context windows for Phase 2
+context:
+  h1_window: 100         # H1 candles as context (~4 days)
+  h4_window: 50          # H4 candles as context (~8 days)
